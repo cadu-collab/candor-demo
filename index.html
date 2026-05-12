@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candor — Practice the conversation before the stakes are real</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: #0C0C0C;
+  color: #F2EDE4;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --bg:           #0C0C0C;
+  --surface-1:    #161616;
+  --surface-2:    #1E1E1E;
+  --surface-3:    #262626;
+  --border:       #2A2A2A;
+  --border-hi:    #383838;
+  --text-primary: #F2EDE4;
+  --text-secondary:#B8B0A4;
+  --text-muted:   #6E6860;
+  --accent:       #D4C9B6;
+  --accent-dim:   #A09080;
+  --green:        #86efac;
+  --amber:        #fbbf24;
+  --max-w:        1080px;
+  --r:            10px;
+  --r-sm:         6px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 { line-height: 1.15; letter-spacing: -0.03em; color: var(--text-primary); }
+p { color: var(--text-secondary); }
+a { color: inherit; text-decoration: none; }
+
+/* ===== LAYOUT HELPERS ===== */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+section { padding: 96px 28px; }
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+.section-heading {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 20px;
+  border-radius: var(--r-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--bg);
+  border-color: var(--text-primary);
+}
+.btn-primary:hover { background: #fff; }
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border-hi);
+}
+.btn-ghost:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ===== DIVIDER ===== */
+.section-divider { border: none; border-top: 1px solid var(--border); }
+
+/* ==========================================
+   NAV
+   ========================================== */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  transition: background 0.3s, border-color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+#nav.scrolled {
+  background: rgba(12,12,12,0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--border);
+}
+.nav-inner {
+  max-width: calc(var(--max-w) + 56px);
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--text-primary);
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+}
+.nav-links a {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  transition: color 0.15s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+.nav-contact {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 7px 15px;
+  border: 1px solid var(--border-hi);
+  border-radius: var(--r-sm);
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+.nav-contact:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+
+/* ==========================================
+   HERO
+   ========================================== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 28px 80px;
+}
+.hero-inner { max-width: var(--max-w); margin: 0 auto; width: 100%; }
+.hero-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+.hero-wordmark {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  color: var(--text-primary);
+  line-height: 0.95;
+  margin-bottom: 24px;
+}
+.hero-tagline {
+  font-size: clamp(1.25rem, 3vw, 1.9rem);
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+  margin-bottom: 20px;
+}
+.hero-body {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 36px;
+}
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.stat-pill strong { color: var(--text-secondary); font-weight: 600; }
+.hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ==========================================
+   HOW IT WORKS
+   ========================================== */
+#how-it-works { border-top: 1px solid var(--border); }
+.steps-wrap {
+  margin-top: 52px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.step-divider { width: 1px; background: var(--border); }
+.step {
+  background: var(--surface-1);
+  padding: 32px 28px;
+}
+.step-num {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.step-icon {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+.step-icon svg { width: 20px; height: 20px; }
+.step-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.step-body { font-size: 0.85rem; color: var(--text-muted); line-height: 1.72; }
+.steps-footer {
+  margin-top: 36px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ==========================================
+   SESSION DEMO
+   ========================================== */
+#session-demo { border-top: 1px solid var(--border); }
+.scenario-card {
+  margin: 40px 0 28px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px 24px;
+}
+.scenario-meta {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.scenario-card p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+.session-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.paths-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.path-col { display: flex; flex-direction: column; }
+.path-head {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--r) var(--r) 0 0;
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.path-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.path-col.without .path-label { color: var(--text-muted); }
+.path-col.with-candor .path-label { color: var(--text-secondary); }
+.path-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+}
+.chat-box {
+  height: 460px;
+  overflow-y: auto;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--r) var(--r);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+.chat-box::-webkit-scrollbar { width: 3px; }
+.chat-box::-webkit-scrollbar-track { background: transparent; }
+.chat-box::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 2px; }
+
+/* chat bubbles */
+.msg { display: flex; flex-direction: column; }
+.msg.alex { align-items: flex-end; }
+.msg.jordan { align-items: flex-start; }
+.msg-name {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.bubble {
+  max-width: 88%;
+  padding: 9px 13px;
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+.msg.alex .bubble {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border-hi);
+  border-radius: 12px 12px 2px 12px;
+}
+.msg.jordan .bubble {
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px 12px 12px 2px;
+}
+.note {
+  font-size: 0.7rem;
+  color: var(--accent-dim);
+  font-style: italic;
+  margin-top: 5px;
+  max-width: 88%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  line-height: 1.4;
+}
+.msg.alex .note { text-align: right; }
+.msg.jordan .note { text-align: left; }
+
+.path-outcome {
+  margin-top: 10px;
+  padding: 14px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  font-size: 0.82rem;
+  font-style: italic;
+  line-height: 1.6;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+.path-col.without .path-outcome { color: var(--text-muted); }
+.path-col.with-candor .path-outcome { color: var(--text-secondary); }
+
+/* ==========================================
+   AI FEEDBACK REPORT
+   ========================================== */
+#feedback { border-top: 1px solid var(--border); }
+.app-chrome {
+  margin-top: 52px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.chrome-bar {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chrome-dots { display: flex; gap: 5px; }
+.chrome-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--border-hi);
+}
+.chrome-url {
+  flex: 1;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+.chrome-body {
+  background: var(--surface-1);
+  padding: 32px;
+}
+.fb-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.fb-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.fb-meta { font-size: 0.78rem; color: var(--text-muted); }
+.fb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.fb-block {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 20px;
+}
+.fb-block-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.fb-icon {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.fb-icon svg { width: 15px; height: 15px; }
+.fb-block-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+.fb-block p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.fb-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* ==========================================
+   DASHBOARD
+   ========================================== */
+#dashboard { border-top: 1px solid var(--border); }
+.dash-chrome {
+  margin-top: 52px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.app-shell {
+  display: grid;
+  grid-template-columns: 188px 1fr;
+  background: var(--surface-1);
+  min-height: 560px;
+}
+.sidebar {
+  background: var(--surface-2);
+  border-right: 1px solid var(--border);
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-logo {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--text-primary);
+  padding: 2px 8px;
+  margin-bottom: 24px;
+}
+.sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+.nav-item {
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: default;
+}
+.nav-item.active {
+  background: var(--surface-3);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.dash-main { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+
+/* top row */
+.dash-top { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.profile-card, .next-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 18px;
+}
+.avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--surface-3);
+  border: 1px solid var(--border-hi);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.tier-pill {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 7px;
+}
+.profile-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+.profile-role { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; }
+.profile-kpis { display: flex; gap: 14px; }
+.kpi { font-size: 0.72rem; color: var(--text-muted); }
+.kpi strong { color: var(--text-secondary); font-weight: 600; }
+
+.next-label {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.next-type {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+.next-scenario {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.next-time {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+.join-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  background: var(--text-primary);
+  color: var(--bg);
+  border-radius: var(--r-sm);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: default;
+}
+
+/* trend chart */
+.chart-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 18px;
+}
+.chart-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.chart-wrap { position: relative; height: 96px; }
+.chart-wrap svg { width: 100%; height: 100%; display: block; }
+.chart-dates {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+.chart-ann {
+  position: absolute;
+  top: 16px;
+  left: 57%;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  font-style: italic;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  padding-top: 3px;
+  border-top: 1px solid var(--border);
+}
+
+/* session table */
+.table-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.table-head-bar {
+  padding: 10px 16px;
+  background: var(--surface-3);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+table { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left;
+  padding: 8px 14px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 9px 14px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+tr:last-child td { border-bottom: none; }
+td:first-child { color: var(--text-muted); font-size: 0.72rem; }
+.sig-ok  { color: var(--green);  font-size: 0.76rem; }
+.sig-warn{ color: var(--amber);  font-size: 0.76rem; }
+.sig-base{ color: var(--text-muted); font-size: 0.76rem; }
+
+/* ==========================================
+   THE ASK
+   ========================================== */
+#ask { border-top: 1px solid var(--border); }
+.ask-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 52px 0 44px;
+}
+.ask-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ask-card.featured { border-color: var(--accent-dim); }
+.ask-icon {
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+}
+.ask-icon svg { width: 19px; height: 19px; }
+.ask-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+.ask-body { font-size: 0.83rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
+.ask-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px;
+  border: 1px solid var(--border-hi);
+  border-radius: var(--r-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.15s;
+  align-self: flex-start;
+}
+.ask-cta:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+.ask-card.featured .ask-cta {
+  background: var(--text-primary);
+  color: var(--bg);
+  border-color: var(--text-primary);
+}
+.ask-card.featured .ask-cta:hover { background: #fff; }
+.closing-quote {
+  border-left: 2px solid var(--border-hi);
+  padding-left: 22px;
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 660px;
+}
+.contact-line { font-size: 0.82rem; color: var(--text-muted); }
+.contact-line a { color: var(--text-secondary); transition: color 0.15s; }
+.contact-line a:hover { color: var(--text-primary); }
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px;
+}
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text-muted);
+}
+.footer-meta { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 820px) {
+  section { padding: 64px 20px; }
+  .nav-links { display: none; }
+  .steps-wrap { grid-template-columns: 1fr; }
+  .step-divider { display: none; }
+  .paths-grid { grid-template-columns: 1fr; }
+  .fb-grid { grid-template-columns: 1fr; }
+  .dash-top { grid-template-columns: 1fr; }
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .ask-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==========================================
+     NAV
+     ========================================== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">Candor</span>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#session-demo">Session demo</a></li>
+      <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#ask">The ask</a></li>
+    </ul>
+    <a href="mailto:partners@vayucap.com?subject=Candor%20Inquiry" class="nav-contact">Get in touch</a>
+  </div>
+</nav>
+
+<!-- ==========================================
+     HERO
+     ========================================== -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Leadership Development Platform &middot; AI-Powered Practice</p>
+    <h1 class="hero-wordmark">Candor</h1>
+    <p class="hero-tagline">Practice the conversation<br>before the stakes are real.</p>
+    <p class="hero-body">
+      82% of managers are promoted with zero leadership training. They have the most consequential
+      conversations of their careers with no preparation, no rehearsal, and no feedback.
+      We built the platform that changes that.
+    </p>
+    <div class="hero-stats">
+      <span class="stat-pill"><strong>82%</strong>&nbsp;promoted with zero training</span>
+      <span class="stat-pill"><strong>4.34 hrs</strong>&nbsp;per week lost to unresolved conflict</span>
+      <span class="stat-pill"><strong>42%</strong>&nbsp;of exits are preventable</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#session-demo" class="btn btn-primary">Watch a session &rarr;</a>
+      <a href="#feedback" class="btn btn-ghost">See the feedback</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     HOW IT WORKS
+     ========================================== -->
+<section id="how-it-works">
+  <div class="container">
+    <p class="section-label">How it works</p>
+    <h2 class="section-heading">Deliberate practice<br>for difficult conversations.</h2>
+    <p class="section-sub">
+      The training market has been selling awareness for twenty years. Candor builds what comes after it —
+      the capacity to act differently when the conversation gets hard.
+    </p>
+
+    <div class="steps-wrap">
+      <!-- Step 1 -->
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="3" width="16" height="18" rx="2"/>
+            <line x1="8" y1="8" x2="16" y2="8"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+            <line x1="8" y1="16" x2="11" y2="16"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Choose your scenario</h3>
+        <p class="step-body">
+          Select from a library of 10 conversation types — underperformance, conflict mediation,
+          promotion denial, retention, layoff, and more. Each scenario is calibrated to the
+          level of difficulty you are ready for.
+        </p>
+      </div>
+      <div class="step-divider"></div>
+      <!-- Step 2 -->
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Practice with AI or an actor</h3>
+        <p class="step-body">
+          AI sessions are available anytime. Actor sessions pair you with a trained professional
+          who responds to what is actually in the room — not a script. You cannot perform your
+          way through it.
+        </p>
+      </div>
+      <div class="step-divider"></div>
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+            <line x1="2" y1="20" x2="22" y2="20"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Get your behavioral feedback</h3>
+        <p class="step-body">
+          After every session, Candor's AI analyzes what you actually did under pressure.
+          Not a score. A behavioral reflection — when you stayed, when you backed away,
+          and what to try differently next time.
+        </p>
+      </div>
+    </div>
+    <p class="steps-footer">This is not coaching. This is deliberate practice.</p>
+  </div>
+</section>
+
+<!-- ==========================================
+     SESSION DEMO
+     ========================================== -->
+<section id="session-demo">
+  <div class="container">
+    <p class="section-label">Session demo</p>
+    <h2 class="section-heading">Same conversation.<br>Two outcomes.</h2>
+    <p class="section-sub">
+      Watch what happens when a manager has practiced — and when they have not.
+      Same scenario, same stakes, completely different result.
+    </p>
+
+    <div class="scenario-card">
+      <p class="scenario-meta">Session &middot; Underperformance Feedback &middot; Difficulty 3/5 &middot; Alex Rivera, Engineering Manager</p>
+      <p>
+        Alex has been avoiding this conversation for three weeks. Jordan has missed two sprint deadlines
+        and the team is starting to notice. Both paths start from the same moment — the conversation
+        Alex needs to have.
+      </p>
+    </div>
+
+    <div class="session-controls">
+      <button class="btn btn-primary" id="play-btn" onclick="playSession()">&#9654; Play Session</button>
+      <button class="btn btn-ghost" id="reset-btn" onclick="resetSession()">Reset</button>
+    </div>
+
+    <div class="paths-grid">
+      <!-- Left: Without Practice -->
+      <div class="path-col without">
+        <div class="path-head">
+          <span class="path-label">Without practice</span>
+        </div>
+        <div class="chat-box" id="col-without"></div>
+        <div class="path-outcome" id="outcome-without">
+          Jordan feels heard. The deadlines are not mentioned by name.
+          Nothing changes next sprint. The silence accumulates.
+        </div>
+      </div>
+
+      <!-- Right: After 6 Sessions -->
+      <div class="path-col with-candor">
+        <div class="path-head">
+          <span class="path-dot"></span>
+          <span class="path-label">After 6 sessions on Candor</span>
+        </div>
+        <div class="chat-box" id="col-with"></div>
+        <div class="path-outcome" id="outcome-with">
+          Jordan is seen and held accountable simultaneously.
+          The real obstacle is visible. Trust is available.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     AI FEEDBACK REPORT
+     ========================================== -->
+<section id="feedback">
+  <div class="container">
+    <p class="section-label">After every session</p>
+    <h2 class="section-heading">Candor shows you exactly<br>what happened.</h2>
+    <p class="section-sub">
+      Not a score. Not a checklist. A behavioral reflection — specific to what you actually
+      did in this conversation, compared to where you have been.
+    </p>
+
+    <div class="app-chrome">
+      <div class="chrome-bar">
+        <div class="chrome-dots">
+          <div class="chrome-dot"></div>
+          <div class="chrome-dot"></div>
+          <div class="chrome-dot"></div>
+        </div>
+        <div class="chrome-url">app.candor.ai/sessions/may-8/feedback</div>
+      </div>
+      <div class="chrome-body">
+        <div class="fb-header">
+          <div class="fb-title">Underperformance Feedback &mdash; Session Feedback</div>
+          <div class="fb-meta">May 8, 2026 &middot; 28 min &middot; AI Session &middot; Alex Rivera</div>
+        </div>
+        <div class="fb-grid">
+
+          <div class="fb-block">
+            <div class="fb-block-head">
+              <div class="fb-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <span class="fb-block-title">What You Did</span>
+            </div>
+            <p>You opened by naming the issue directly &mdash; unusual for this scenario. In prior sessions,
+            you typically entered with a wellness check framing. This is a measurable shift.</p>
+          </div>
+
+          <div class="fb-block">
+            <div class="fb-block-head">
+              <div class="fb-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <span class="fb-block-title">The Moment That Mattered</span>
+            </div>
+            <p>At exchange 5, Jordan disclosed the scope problem. You did not fill the silence that followed.
+            You waited. That is new. Jordan&rsquo;s response shifted in quality because of it. Notice that.</p>
+          </div>
+
+          <div class="fb-block">
+            <div class="fb-block-head">
+              <div class="fb-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+              <span class="fb-block-title">Where You Backed Off</span>
+            </div>
+            <p>In exchange 7, after setting the Thursday expectation, you softened the close: &ldquo;I&rsquo;m not
+            trying to build a case against you.&rdquo; Watch whether that framing becomes a habit of
+            pre-apologizing for clarity.</p>
+          </div>
+
+          <div class="fb-block">
+            <div class="fb-block-head">
+              <div class="fb-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </div>
+              <span class="fb-block-title">What to Try Next</span>
+            </div>
+            <p>Your next session: same scenario, one level harder &mdash; Jordan pushes back on the Thursday
+            deadline. Practice sitting in the disagreement without revising the expectation downward.
+            That is the next threshold.</p>
+          </div>
+
+        </div>
+        <div class="fb-footer">Candor AI Analysis &middot; Session 6 of your Underperformance Feedback track</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     DASHBOARD
+     ========================================== -->
+<section id="dashboard">
+  <div class="container">
+    <p class="section-label">The platform</p>
+    <h2 class="section-heading">Your development,<br>made visible.</h2>
+    <p class="section-sub">
+      Track behavioral patterns across sessions. See what is changing &mdash; and what is not.
+      Know exactly where to go next.
+    </p>
+
+    <div class="dash-chrome">
+      <div class="chrome-bar">
+        <div class="chrome-dots">
+          <div class="chrome-dot"></div>
+          <div class="chrome-dot"></div>
+          <div class="chrome-dot"></div>
+        </div>
+        <div class="chrome-url">app.candor.ai/dashboard</div>
+      </div>
+      <div class="app-shell">
+
+        <!-- Sidebar -->
+        <nav class="sidebar">
+          <div class="sidebar-logo">Candor</div>
+          <div class="sidebar-nav">
+            <div class="nav-item">Practice</div>
+            <div class="nav-item">Sessions</div>
+            <div class="nav-item">Feedback</div>
+            <div class="nav-item active">Progress</div>
+            <div class="nav-item">Settings</div>
+          </div>
+        </nav>
+
+        <!-- Main content -->
+        <main class="dash-main">
+
+          <!-- Top row: profile + next session -->
+          <div class="dash-top">
+            <div class="profile-card">
+              <div class="avatar">AR</div>
+              <div class="tier-pill">Tier B &mdash; Team</div>
+              <div class="profile-name">Alex Rivera</div>
+              <div class="profile-role">Engineering Manager &middot; Acme Corp &middot; 3 months on Candor</div>
+              <div class="profile-kpis">
+                <div class="kpi"><strong>6</strong> sessions</div>
+                <div class="kpi"><strong>3</strong> scenario types</div>
+                <div class="kpi"><strong>6</strong> week streak</div>
+              </div>
+            </div>
+            <div class="next-card">
+              <div class="next-label">Next session</div>
+              <div class="next-type">Live Actor Session</div>
+              <div class="next-scenario">Difficult Feedback &mdash; The Defender archetype<br>Same scenario, next difficulty level</div>
+              <div class="next-time">Thu May 14, 2026 &middot; 2:00 PM</div>
+              <div class="join-btn">Join session &rarr;</div>
+            </div>
+          </div>
+
+          <!-- Trend chart -->
+          <div class="chart-card">
+            <div class="chart-label">Behavioral Trend &mdash; Presence Under Pressure</div>
+            <div class="chart-wrap">
+              <svg viewBox="0 0 380 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid lines -->
+                <line x1="0" y1="20" x2="380" y2="20" stroke="#2A2A2A" stroke-width="1"/>
+                <line x1="0" y1="46" x2="380" y2="46" stroke="#2A2A2A" stroke-width="1"/>
+                <line x1="0" y1="72" x2="380" y2="72" stroke="#2A2A2A" stroke-width="1"/>
+                <!-- Area fill -->
+                <path d="M 24 82 L 94 70 L 162 59 L 230 50 L 300 34 L 358 18 L 358 90 L 24 90 Z"
+                      fill="rgba(212,201,182,0.05)"/>
+                <!-- Trend line -->
+                <polyline points="24,82 94,70 162,59 230,50 300,34 358,18"
+                          fill="none" stroke="#D4C9B6" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Data points -->
+                <circle cx="24"  cy="82" r="3.5" fill="#D4C9B6"/>
+                <circle cx="94"  cy="70" r="3.5" fill="#D4C9B6"/>
+                <circle cx="162" cy="59" r="3.5" fill="#D4C9B6"/>
+                <circle cx="230" cy="50" r="4.5" fill="#D4C9B6" stroke="#0C0C0C" stroke-width="1.5"/>
+                <circle cx="300" cy="34" r="3.5" fill="#D4C9B6"/>
+                <circle cx="358" cy="18" r="3.5" fill="#D4C9B6"/>
+                <!-- Annotation line -->
+                <line x1="230" y1="50" x2="230" y2="22" stroke="#383838" stroke-width="1" stroke-dasharray="3 2"/>
+              </svg>
+              <div class="chart-ann">First time staying with silence</div>
+            </div>
+            <div class="chart-dates">
+              <span>Apr 3</span><span>Apr 10</span><span>Apr 17</span>
+              <span>Apr 24</span><span>May 1</span><span>May 8</span>
+            </div>
+          </div>
+
+          <!-- Session history table -->
+          <div class="table-card">
+            <div class="table-head-bar">Session history</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Scenario</th>
+                  <th>Mode</th>
+                  <th>Duration</th>
+                  <th>Signal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>May 8</td>
+                  <td>Underperformance Feedback</td>
+                  <td>AI</td>
+                  <td>28 min</td>
+                  <td class="sig-ok">Stayed with silence ✓</td>
+                </tr>
+                <tr>
+                  <td>May 1</td>
+                  <td>Promotion Denial</td>
+                  <td>Actor</td>
+                  <td>31 min</td>
+                  <td class="sig-ok">Named issue clearly ✓</td>
+                </tr>
+                <tr>
+                  <td>Apr 24</td>
+                  <td>Conflict Mediation</td>
+                  <td>AI</td>
+                  <td>26 min</td>
+                  <td class="sig-warn">Dark side detected ⚠</td>
+                </tr>
+                <tr>
+                  <td>Apr 17</td>
+                  <td>Retention Conversation</td>
+                  <td>Actor</td>
+                  <td>33 min</td>
+                  <td class="sig-ok">Recovery strong ✓</td>
+                </tr>
+                <tr>
+                  <td>Apr 10</td>
+                  <td>Underperformance Feedback</td>
+                  <td>AI</td>
+                  <td>24 min</td>
+                  <td class="sig-warn">Avoidance pattern flagged ⚠</td>
+                </tr>
+                <tr>
+                  <td>Apr 3</td>
+                  <td>Calibration &mdash; First Session</td>
+                  <td>AI</td>
+                  <td>19 min</td>
+                  <td class="sig-base">Baseline set</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </main>
+      </div><!-- app-shell -->
+    </div><!-- dash-chrome -->
+  </div><!-- container -->
+</section>
+
+<!-- ==========================================
+     THE ASK
+     ========================================== -->
+<section id="ask">
+  <div class="container">
+    <p class="section-label">What we need</p>
+    <h2 class="section-heading">We are building this.<br>We need three things.</h2>
+
+    <div class="ask-grid">
+
+      <div class="ask-card">
+        <div class="ask-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="ask-title">Pilot Organizations</div>
+        <div class="ask-body">
+          3&ndash;5 companies. 90-day engagement. 50% of standard pricing.
+          Success metric agreed upfront. Case study rights.
+          Fast-growing tech companies and professional services firms preferred.
+        </div>
+        <a href="mailto:partners@vayucap.com?subject=Candor%20Pilot" class="ask-cta">Become a pilot &rarr;</a>
+      </div>
+
+      <div class="ask-card">
+        <div class="ask-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </div>
+        <div class="ask-title">Strategic Partners</div>
+        <div class="ask-body">
+          Executive coaching firms, EAP providers, HR consultancies.
+          Your CHRO relationships, our platform. Revenue share model.
+          Channel partners multiply reach without proportional headcount.
+        </div>
+        <a href="mailto:partners@vayucap.com?subject=Candor%20Partnership" class="ask-cta">Explore partnership &rarr;</a>
+      </div>
+
+      <div class="ask-card featured">
+        <div class="ask-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <div class="ask-title">Seed Capital</div>
+        <div class="ask-body">
+          $700K&ndash;$900K. MVP build, actor network, 5&ndash;10 pilot clients,
+          first AE at month 6. LTV:CAC of 5.5x&ndash;8.3x at 20-manager contracts.
+          Gross margin improves from 45% to 75% as AI sessions scale.
+        </div>
+        <a href="mailto:partners@vayucap.com?subject=Candor%20Seed%20Deck" class="ask-cta">Request the deck &rarr;</a>
+      </div>
+
+    </div>
+
+    <blockquote class="closing-quote">
+      &ldquo;Every organization has a number they don&rsquo;t know. It&rsquo;s the cost of the conversations their managers
+      are not having. We built the platform that eliminates it &mdash; not by teaching managers to manage emotions
+      better, but by building the capacity to be present in the moments that actually matter.&rdquo;
+    </blockquote>
+
+    <p class="contact-line"><a href="mailto:partners@vayucap.com">partners@vayucap.com</a></p>
+  </div>
+</section>
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">Candor</span>
+    <span class="footer-meta">Demo &middot; Startup Grind Silicon Valley &middot; May 2026</span>
+  </div>
+</footer>
+
+<!-- ==========================================
+     JAVASCRIPT
+     ========================================== -->
+<script>
+'use strict';
+
+/* ===== SESSION DEMO DATA ===== */
+
+const SESSION_WITHOUT = [
+  {
+    speaker: 'alex',
+    text: "Hey Jordan, got a minute? I just wanted to check in — things have seemed a bit off lately and I wanted to make sure you're doing okay.",
+    note: "Avoidance opener. Frames a performance issue as a wellness check."
+  },
+  {
+    speaker: 'jordan',
+    text: "Oh. Yeah, I'm okay I guess. Things have just been a bit hectic.",
+    note: null
+  },
+  {
+    speaker: 'alex',
+    text: "Totally, I get that. It really has been a lot for everyone. I appreciate you always trying so hard even when it's tough.",
+    note: "Validation without purpose. Deflects away from the issue before it arrives."
+  },
+  {
+    speaker: 'jordan',
+    text: "Thanks. I guess I've just been juggling a lot.",
+    note: null
+  },
+  {
+    speaker: 'alex',
+    text: "Yeah, I hear that. I just want you to know I'm always here if you need to talk about anything. Your wellbeing really matters to me.",
+    note: "Emotional mirroring deployed to produce comfort — not to name what's real."
+  },
+  {
+    speaker: 'jordan',
+    text: "That's good to know. I appreciate that.",
+    note: null
+  },
+  {
+    speaker: 'alex',
+    text: "Hey, and I know the last couple of sprints have been rough — I've noticed. I just want to say, I know you've got this. Sometimes things just take time.",
+    note: "The issue surfaces — then immediately softened into encouragement."
+  },
+  {
+    speaker: 'jordan',
+    text: "Yeah... I'll try to do better.",
+    note: null
+  },
+  {
+    speaker: 'alex',
+    text: "You're doing great. I just wanted you to know I see you working hard. Let's catch up again next week, yeah?",
+    note: "No expectations set. Conversation ends without resolution."
+  }
+];
+
+const SESSION_WITH = [
+  {
+    speaker: 'alex',
+    text: "Jordan, I need to talk with you about the last two sprint deliveries. You missed both deadlines, and I want to understand what's happening.",
+    note: "Issue named in the first sentence. No preamble."
+  },
+  {
+    speaker: 'jordan',
+    text: "I — yeah. I know. It's been a rough few weeks.",
+    note: null
+  },
+  {
+    speaker: 'alex',
+    text: "I hear that. I also need to be honest: it's starting to affect the team. I'm not bringing it up to put pressure on you — I need to understand whether something's in the way, or whether expectations need to be reset.",
+    note: "Names impact. Creates two real options instead of softening into one answer."
+  },
+  {
+    speaker: 'jordan',
+    text: "I think... I've been overwhelmed. I didn't want to say anything because I didn't want to look like I couldn't handle it.",
+    note: null
+  },
+  {
+    speaker: 'alex',
+    text: "That's exactly the kind of thing I need to know earlier. I'd rather adjust something while there's time. What's creating the overwhelm?",
+    note: "Doesn't manage the emotion away. Opens toward the real issue."
+  },
+  {
+    speaker: 'jordan',
+    text: "The new integration work got a lot bigger than the original scope. And I've been picking up some of Marcus's stuff while he's been out.",
+    note: null
+  },
+  {
+    speaker: 'alex',
+    text: "Okay. That's information I can work with. By Thursday — send me the honest scope of what you're carrying. Not what you think you can handle. The honest list. And delivery dates need to be real from here on. If they're going to slip, I need to know before the day they're due.",
+    note: "Concrete. Specific. Recoverable."
+  },
+  {
+    speaker: 'jordan',
+    text: "Okay. Yeah, I can do that.",
+    note: null
+  },
+  {
+    speaker: 'alex',
+    text: "Good. I'm not trying to build a case against you — I'm trying to make sure this is solvable. But I need you to be straight with me for that to work.",
+    note: "Closes with intention named — without retreating from the expectation."
+  }
+];
+
+/* ===== STATE ===== */
+const demo = { timeouts: [], intervals: [], active: false };
+
+/* ===== UTILS ===== */
+
+function typeText(el, text, speed, onDone) {
+  let i = 0;
+  const iv = setInterval(() => {
+    el.textContent += text[i++];
+    if (i >= text.length) {
+      clearInterval(iv);
+      if (onDone) onDone();
+    }
+  }, speed);
+  demo.intervals.push(iv);
+}
+
+function scrollDown(el) {
+  el.scrollTop = el.scrollHeight;
+}
+
+/* ===== SESSION DEMO ===== */
+
+const SPEED = 17;   // ms per character
+const PAUSE = 1250; // ms between messages
+
+function buildBubble(msg) {
+  const wrap = document.createElement('div');
+  wrap.className = 'msg ' + msg.speaker;
+
+  const name = document.createElement('span');
+  name.className = 'msg-name';
+  name.textContent = msg.speaker === 'alex' ? 'Alex' : 'Jordan';
+
+  const bub = document.createElement('div');
+  bub.className = 'bubble';
+
+  const txt = document.createElement('span');
+  bub.appendChild(txt);
+
+  wrap.appendChild(name);
+  wrap.appendChild(bub);
+
+  let noteEl = null;
+  if (msg.note) {
+    noteEl = document.createElement('div');
+    noteEl.className = 'note';
+    noteEl.textContent = msg.note;
+    wrap.appendChild(noteEl);
+  }
+
+  return { wrap, txt, noteEl };
+}
+
+function runColumn(messages, boxId, outcomeId) {
+  const box = document.getElementById(boxId);
+  let delay = 0;
+
+  messages.forEach(msg => {
+    const at = delay;
+    const duration = msg.text.length * SPEED;
+
+    const t = setTimeout(() => {
+      const { wrap, txt, noteEl } = buildBubble(msg);
+      box.appendChild(wrap);
+      scrollDown(box);
+
+      typeText(txt, msg.text, SPEED, () => {
+        if (noteEl) noteEl.style.opacity = '1';
+        scrollDown(box);
+      });
+    }, at);
+
+    demo.timeouts.push(t);
+    delay += duration + PAUSE;
+  });
+
+  // reveal outcome after last message finishes
+  const outcomeAt = delay + 500;
+  const ot = setTimeout(() => {
+    const el = document.getElementById(outcomeId);
+    if (el) el.style.opacity = '1';
+  }, outcomeAt);
+  demo.timeouts.push(ot);
+
+  return delay;
+}
+
+function playSession() {
+  if (demo.active) return;
+  demo.active = true;
+
+  const btn = document.getElementById('play-btn');
+  btn.disabled = true;
+  btn.textContent = '▶ Playing...';
+
+  const d1 = runColumn(SESSION_WITHOUT, 'col-without', 'outcome-without');
+  const d2 = runColumn(SESSION_WITH,    'col-with',    'outcome-with');
+
+  // re-label button when done
+  const finishAt = Math.max(d1, d2) + 1400;
+  const ft = setTimeout(() => {
+    btn.textContent = '✓ Complete — click Reset to replay';
+  }, finishAt);
+  demo.timeouts.push(ft);
+}
+
+function resetSession() {
+  demo.timeouts.forEach(t => clearTimeout(t));
+  demo.intervals.forEach(i => clearInterval(i));
+  demo.timeouts.length = 0;
+  demo.intervals.length = 0;
+  demo.active = false;
+
+  document.getElementById('col-without').innerHTML = '';
+  document.getElementById('col-with').innerHTML = '';
+  document.getElementById('outcome-without').style.opacity = '0';
+  document.getElementById('outcome-with').style.opacity = '0';
+
+  const btn = document.getElementById('play-btn');
+  btn.disabled = false;
+  btn.textContent = '▶ Play Session';
+}
+
+/* ===== NAV ===== */
+
+function initNav() {
+  const nav = document.getElementById('nav');
+  const links = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-15% 0px -65% 0px' });
+
+  sections.forEach(s => io.observe(s));
+}
+
+/* ===== INIT ===== */
+document.addEventListener('DOMContentLoaded', initNav);
+</script>
+</body>
+</html>
