@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Candor — Practice the conversation before the stakes are real</title>
+<title>Rehearse — Be More Human</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -292,36 +292,7 @@ section { padding: 96px 28px; }
   gap: 10px;
   margin-bottom: 20px;
 }
-.paths-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.path-col { display: flex; flex-direction: column; }
-.path-head {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-bottom: none;
-  border-radius: var(--r) var(--r) 0 0;
-  padding: 11px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.path-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.path-col.without .path-label { color: var(--text-muted); }
-.path-col.with-candor .path-label { color: var(--text-secondary); }
-.path-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #4ade80;
-  flex-shrink: 0;
-}
+
 .chat-box {
   height: 460px;
   overflow-y: auto;
@@ -381,20 +352,6 @@ section { padding: 96px 28px; }
 .msg.alex .note { text-align: right; }
 .msg.jordan .note { text-align: left; }
 
-.path-outcome {
-  margin-top: 10px;
-  padding: 14px 16px;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  font-size: 0.82rem;
-  font-style: italic;
-  line-height: 1.6;
-  opacity: 0;
-  transition: opacity 0.9s ease;
-}
-.path-col.without .path-outcome { color: var(--text-muted); }
-.path-col.with-candor .path-outcome { color: var(--text-secondary); }
 
 /* ==========================================
    AI FEEDBACK REPORT
@@ -996,8 +953,7 @@ footer {
   .nav-links { display: none; }
   .steps-wrap { grid-template-columns: 1fr; }
   .step-divider { display: none; }
-  .paths-grid { grid-template-columns: 1fr; }
-  .fb-grid { grid-template-columns: 1fr; }
+.fb-grid { grid-template-columns: 1fr; }
   .dash-top { grid-template-columns: 1fr; }
   .app-shell { grid-template-columns: 1fr; }
   .sidebar { display: none; }
@@ -1006,6 +962,131 @@ footer {
   .org-stats { grid-template-columns: 1fr; }
   .join-inner { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
   .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+  .loop-nav { gap: 8px; }
+  .loop-step-tab { padding: 10px 14px; }
+}
+
+/* ==========================================
+   SESSION DEMO — LOOP DESIGN
+   ========================================== */
+.loop-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0 24px;
+  flex-wrap: wrap;
+}
+.loop-step-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  opacity: 0.4;
+  transition: all 0.3s;
+  cursor: default;
+}
+.loop-step-tab.active {
+  opacity: 1;
+  border-color: var(--accent-dim);
+}
+.loop-step-num {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.loop-step-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.loop-step-tab.active .loop-step-label { color: var(--text-primary); }
+.loop-arrow {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.loop-panel { margin-top: 8px; }
+.scenario-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 12px 0 16px;
+}
+#col-session { border-radius: var(--r); }
+.loop-advance {
+  margin-top: 20px;
+  transition: opacity 0.6s ease;
+}
+.analysis-box {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.analysis-signal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.analysis-signal:last-child { border-bottom: none; }
+.analysis-signal-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-dim);
+}
+.analysis-signal-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.insights-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.insight-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 18px 22px;
+}
+.insight-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 7px;
+}
+.insight-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+.loop-outcome {
+  background: var(--surface-2);
+  border-left: 2px solid var(--green);
+  padding: 16px 20px;
+  border-radius: 0 var(--r) var(--r) 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.65;
 }
 </style>
 </head>
@@ -1016,7 +1097,7 @@ footer {
      ========================================== -->
 <nav id="nav">
   <div class="nav-inner">
-    <span class="nav-brand">Candor</span>
+    <span class="nav-brand">Rehearse</span>
     <ul class="nav-links">
       <li><a href="#how-it-works">How it works</a></li>
       <li><a href="#session-demo">Live demo</a></li>
@@ -1025,7 +1106,7 @@ footer {
       <li><a href="#dashboard">For orgs</a></li>
       <li><a href="#join">Join us</a></li>
     </ul>
-    <a href="mailto:partners@vayucap.com?subject=Candor%20Inquiry" class="nav-contact">Get in touch</a>
+    <a href="mailto:partners@vayucap.com?subject=Rehearse%20Inquiry" class="nav-contact">Get in touch</a>
   </div>
 </nav>
 
@@ -1035,8 +1116,8 @@ footer {
 <section id="hero">
   <div class="hero-inner">
     <p class="hero-eyebrow">Leadership Development Platform &middot; Behaviorally Grounded AI Practice</p>
-    <h1 class="hero-wordmark">Candor</h1>
-    <p class="hero-tagline">Practice the conversation<br>before the stakes are real</p>
+    <h1 class="hero-wordmark">Rehearse</h1>
+    <p class="hero-tagline">Be More Human</p>
     <p class="hero-body">
       82% of managers are promoted with zero leadership training. They have the most consequential
       conversations of their careers with no preparation, no rehearsal, and no feedback.
@@ -1062,7 +1143,7 @@ footer {
     <p class="section-label">How it works</p>
     <h2 class="section-heading">Deliberate practice<br>for difficult conversations</h2>
     <p class="section-sub">
-      The training market has been selling awareness for twenty years. Candor builds what comes after it:
+      The training market has been selling awareness for twenty years. Rehearse builds what comes after it:
       the capacity to act differently when the conversation gets hard.
     </p>
 
@@ -1115,7 +1196,7 @@ footer {
         </div>
         <h3 class="step-title">Get your behavioral feedback</h3>
         <p class="step-body">
-          After every session, Candor's AI analyzes what you actually did under pressure.
+          After every session, Rehearse's AI analyzes what you actually did under pressure.
           Not a score. A behavioral reflection: when you stayed, when you backed away,
           and what to try differently next time. The analysis is grounded in proven
           frameworks for difficult conversations and leadership feedback.
@@ -1132,19 +1213,26 @@ footer {
 <section id="session-demo">
   <div class="container">
     <p class="section-label">Session demo</p>
-    <h2 class="section-heading">Same conversation<br>Two outcomes</h2>
+    <h2 class="section-heading">The Rehearse Loop</h2>
     <p class="section-sub">
-      Watch what happens when a manager has practiced and when they have not.
-      Same scenario, same stakes, completely different result.
+      Practice with a real actor. Let AI read what happened. Walk away knowing exactly what to do differently.
     </p>
 
-    <div class="scenario-card">
-      <p class="scenario-meta">Session &middot; Underperformance Feedback &middot; Difficulty 3/5 &middot; Alex Rivera, Engineering Manager</p>
-      <p>
-        Alex has been avoiding this conversation for three weeks. Jordan has missed two sprint deadlines
-        and the team is starting to notice. Both paths start from the same moment, the conversation
-        Alex needs to have.
-      </p>
+    <div class="loop-nav">
+      <div class="loop-step-tab active" id="tab-1">
+        <span class="loop-step-num">01</span>
+        <span class="loop-step-label">Practice with Actor</span>
+      </div>
+      <div class="loop-arrow">&#8594;</div>
+      <div class="loop-step-tab" id="tab-2">
+        <span class="loop-step-num">02</span>
+        <span class="loop-step-label">AI Reads the Session</span>
+      </div>
+      <div class="loop-arrow">&#8594;</div>
+      <div class="loop-step-tab" id="tab-3">
+        <span class="loop-step-num">03</span>
+        <span class="loop-step-label">Behavioral Insights</span>
+      </div>
     </div>
 
     <div class="session-controls">
@@ -1152,32 +1240,34 @@ footer {
       <button class="btn btn-ghost" id="reset-btn" onclick="resetSession()">Reset</button>
     </div>
 
-    <div class="paths-grid">
-      <!-- Left: Without Practice -->
-      <div class="path-col without">
-        <div class="path-head">
-          <span class="path-label">Without practice</span>
-        </div>
-        <div class="chat-box" id="col-without"></div>
-        <div class="path-outcome" id="outcome-without">
-          Jordan feels heard. The deadlines are not mentioned by name.
-          Nothing changes next sprint. The silence accumulates.
-        </div>
-      </div>
-
-      <!-- Right: After 6 Sessions -->
-      <div class="path-col with-candor">
-        <div class="path-head">
-          <span class="path-dot"></span>
-          <span class="path-label">After 6 sessions on Candor</span>
-        </div>
-        <div class="chat-box" id="col-with"></div>
-        <div class="path-outcome" id="outcome-with">
-          Jordan is seen and held accountable simultaneously.
-          The real obstacle is visible. Trust is available.
-        </div>
+    <!-- Panel 1: Practice conversation -->
+    <div class="loop-panel" id="panel-1">
+      <p class="scenario-meta">Session &middot; Underperformance Feedback &middot; Difficulty 3/5 &middot; Alex Rivera, Engineering Manager</p>
+      <p class="scenario-desc">Alex practices with a trained actor who responds to what is actually in the room &mdash; not a script.</p>
+      <div class="chat-box" id="col-session"></div>
+      <div class="loop-advance" id="advance-1" style="opacity:0;pointer-events:none;">
+        <button class="btn btn-primary" onclick="showStep(2)">See how AI reads this session &#8594;</button>
       </div>
     </div>
+
+    <!-- Panel 2: AI analyzing -->
+    <div class="loop-panel" id="panel-2" style="display:none;">
+      <p class="scenario-meta">AI Analysis &middot; Processing session transcript &middot; 847 words &middot; 9 exchanges</p>
+      <div class="analysis-box" id="analysis-box"></div>
+      <div class="loop-advance" id="advance-2" style="opacity:0;pointer-events:none;">
+        <button class="btn btn-primary" onclick="showStep(3)">See behavioral insights &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Panel 3: Behavioral insights -->
+    <div class="loop-panel" id="panel-3" style="display:none;">
+      <p class="scenario-meta">Behavioral Report &middot; Session 1 of 10 &middot; Alex Rivera</p>
+      <div class="insights-box" id="insights-box"></div>
+      <div class="loop-outcome">
+        Jordan is seen and held accountable simultaneously. The real obstacle is visible. Trust is available.
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1189,7 +1279,7 @@ footer {
     <p class="section-label">The analysis engine</p>
     <h2 class="section-heading">Not a script<br>Not a decision tree</h2>
     <p class="section-sub">
-      Candor's AI generates unique conversational friction for every session, adapts to each
+      Rehearse's AI generates unique conversational friction for every session, adapts to each
       manager's specific inputs, and evaluates behavior against frameworks with decades of
       peer-reviewed backing.
     </p>
@@ -1245,7 +1335,7 @@ footer {
         </div>
         <h3 class="step-title">High precision, zero fabrication</h3>
         <p class="step-body">
-          Candor only surfaces feedback on behaviors detectable in the actual conversation.
+          Rehearse only surfaces feedback on behaviors detectable in the actual conversation.
           No inferred intent. No projected personality. No human evaluator subjectivity.
           Every observation is anchored to a specific exchange &mdash; with the moment cited.
         </p>
@@ -1260,10 +1350,10 @@ footer {
 <section id="feedback">
   <div class="container">
     <p class="section-label">After every session</p>
-    <h2 class="section-heading">Candor shows you exactly<br>what happened</h2>
+    <h2 class="section-heading">Rehearse shows you exactly<br>what happened</h2>
     <p class="section-sub">
       An objective mirror &mdash; without the subjectivity of a manager, peer, or coach.
-      Candor evaluates specific communication patterns against established behavioral
+      Rehearse evaluates specific communication patterns against established behavioral
       frameworks, not impressions. What you get is what actually happened in the
       conversation, cited by exchange.
     </p>
@@ -1344,7 +1434,7 @@ footer {
           </div>
 
         </div>
-        <div class="fb-footer">Candor AI Analysis &middot; Behavioral signals evaluated against proven conversation frameworks &middot; Session 6 of 10</div>
+        <div class="fb-footer">Rehearse AI Analysis &middot; Behavioral signals evaluated against proven conversation frameworks &middot; Session 6 of 10</div>
       </div>
     </div>
   </div>
@@ -1358,7 +1448,7 @@ footer {
     <p class="section-label">Enterprise visibility</p>
     <h2 class="section-heading">Map behavioral change across<br>your entire management layer</h2>
     <p class="section-sub">
-      Candor identifies systemic leadership gaps &mdash; not just individual improvement.
+      Rehearse identifies systemic leadership gaps &mdash; not just individual improvement.
       See where avoidance patterns cluster, which departments carry the highest
       conversation risk, and how behavioral trajectories shift over time.
     </p>
@@ -1376,7 +1466,7 @@ footer {
 
         <!-- Sidebar -->
         <nav class="sidebar">
-          <div class="sidebar-logo">Candor</div>
+          <div class="sidebar-logo">Rehearse</div>
           <div class="sidebar-nav">
             <div class="nav-item active">Overview</div>
             <div class="nav-item">Managers</div>
@@ -1659,8 +1749,8 @@ footer {
      ========================================== -->
 <footer>
   <div class="footer-inner">
-    <span class="footer-brand">Candor</span>
-    <span class="footer-meta">Demo &middot; Startup Grind Silicon Valley &middot; May 2026 &middot; <a href="mailto:partners@vayucap.com?subject=Candor%20Investor%20Information" style="color:var(--text-muted);transition:color 0.15s;" onmouseover="this.style.color='var(--text-secondary)'" onmouseout="this.style.color='var(--text-muted)'">Investor information available on request</a></span>
+    <span class="footer-brand">Rehearse</span>
+    <span class="footer-meta">Demo &middot; Startup Grind Silicon Valley &middot; May 2026 &middot; <a href="mailto:partners@vayucap.com?subject=Rehearse%20Investor%20Information" style="color:var(--text-muted);transition:color 0.15s;" onmouseover="this.style.color='var(--text-secondary)'" onmouseout="this.style.color='var(--text-muted)'">Investor information available on request</a></span>
   </div>
 </footer>
 
@@ -1672,55 +1762,7 @@ footer {
 
 /* ===== SESSION DEMO DATA ===== */
 
-const SESSION_WITHOUT = [
-  {
-    speaker: 'alex',
-    text: "Hey Jordan, got a minute? I just wanted to check in — things have seemed a bit off lately and I wanted to make sure you're doing okay.",
-    note: "Silence — Masking: frames a performance issue as a wellness check to avoid naming it directly."
-  },
-  {
-    speaker: 'jordan',
-    text: "Oh. Yeah, I'm okay I guess. Things have just been a bit hectic.",
-    note: null
-  },
-  {
-    speaker: 'alex',
-    text: "Totally, I get that. It really has been a lot for everyone. I appreciate you always trying so hard even when it's tough.",
-    note: "Validation without purpose. Deflects away from the issue before it arrives."
-  },
-  {
-    speaker: 'jordan',
-    text: "Thanks. I guess I've just been juggling a lot.",
-    note: null
-  },
-  {
-    speaker: 'alex',
-    text: "Yeah, I hear that. I just want you to know I'm always here if you need to talk about anything. Your wellbeing really matters to me.",
-    note: "Silence — Avoiding: validates emotion to defer the issue. Pool of shared meaning stays empty."
-  },
-  {
-    speaker: 'jordan',
-    text: "That's good to know. I appreciate that.",
-    note: null
-  },
-  {
-    speaker: 'alex',
-    text: "Hey, and I know the last couple of sprints have been rough — I've noticed. I just want to say, I know you've got this. Sometimes things just take time.",
-    note: "The issue surfaces — then immediately softened into encouragement."
-  },
-  {
-    speaker: 'jordan',
-    text: "Yeah... I'll try to do better.",
-    note: null
-  },
-  {
-    speaker: 'alex',
-    text: "You're doing great. I just wanted you to know I see you working hard. Let's catch up again next week, yeah?",
-    note: "No expectations set. Conversation ends without resolution."
-  }
-];
-
-const SESSION_WITH = [
+const SESSION_ACTOR = [
   {
     speaker: 'alex',
     text: "Jordan, I need to talk with you about the last two sprint deliveries. You missed both deadlines, and I want to understand what's happening.",
@@ -1768,6 +1810,20 @@ const SESSION_WITH = [
   }
 ];
 
+const ANALYSIS_SIGNALS = [
+  { label: 'Accountability framing', text: 'Alex named the missed deadlines in the first sentence — no preamble, no softening. This is a measurable shift from avoidance patterns.' },
+  { label: 'Impact naming', text: 'Impact on the team was stated directly before the emotion check. STATE model signal: facts before story.' },
+  { label: 'Curiosity over judgment', text: 'Alex offered two real options (obstacle vs. expectation reset) rather than a verdict. The door stayed open without retreating.' },
+  { label: 'Emotional acknowledgment', text: "When Jordan disclosed the overwhelm, Alex received it without managing it away. The silence held. Jordan's response quality shifted because of it." },
+  { label: 'Concrete close', text: 'Commitments were specific: a named deliverable (scope doc), a real date (Thursday), a clear forward expectation. Nothing left ambiguous.' },
+];
+
+const INSIGHTS = [
+  { label: 'What you did well', text: 'You named the issue immediately and created space for Jordan to be honest without feeling cornered. The opening was the hardest move — you made it.' },
+  { label: 'Pattern to build on', text: 'Offering two paths (obstacle vs. expectation reset) kept the conversation solvable instead of adversarial. This is a STATE model instinct. Use it more deliberately.' },
+  { label: 'One thing to try next', text: 'After Jordan shared the overwhelm, you moved to action quickly. Next session: sit with the emotion one beat longer before problem-solving. The pause is part of the work.' },
+];
+
 /* ===== STATE ===== */
 const demo = { timeouts: [], intervals: [], active: false };
 
@@ -1791,8 +1847,8 @@ function scrollDown(el) {
 
 /* ===== SESSION DEMO ===== */
 
-const SPEED = 17;   // ms per character
-const PAUSE = 1250; // ms between messages
+const SPEED = 17;
+const PAUSE = 1250;
 
 function buildBubble(msg) {
   const wrap = document.createElement('div');
@@ -1822,7 +1878,7 @@ function buildBubble(msg) {
   return { wrap, txt, noteEl };
 }
 
-function runColumn(messages, boxId, outcomeId) {
+function runColumn(messages, boxId, onDone) {
   const box = document.getElementById(boxId);
   let delay = 0;
 
@@ -1845,15 +1901,51 @@ function runColumn(messages, boxId, outcomeId) {
     delay += duration + PAUSE;
   });
 
-  // reveal outcome after last message finishes
-  const outcomeAt = delay + 500;
-  const ot = setTimeout(() => {
-    const el = document.getElementById(outcomeId);
-    if (el) el.style.opacity = '1';
-  }, outcomeAt);
-  demo.timeouts.push(ot);
+  const finishAt = delay + 500;
+  const ft = setTimeout(() => { if (onDone) onDone(); }, finishAt);
+  demo.timeouts.push(ft);
+}
 
-  return delay;
+function showStep(n) {
+  [1, 2, 3].forEach(i => {
+    document.getElementById('panel-' + i).style.display = 'none';
+    document.getElementById('tab-' + i).classList.remove('active');
+  });
+  document.getElementById('panel-' + n).style.display = 'block';
+  document.getElementById('tab-' + n).classList.add('active');
+  if (n === 2) runAnalysis();
+  if (n === 3) showInsights();
+}
+
+function runAnalysis() {
+  const box = document.getElementById('analysis-box');
+  box.innerHTML = '';
+  ANALYSIS_SIGNALS.forEach((sig, i) => {
+    const el = document.createElement('div');
+    el.className = 'analysis-signal';
+    el.innerHTML = '<span class="analysis-signal-label">' + sig.label + '</span><span class="analysis-signal-text">' + sig.text + '</span>';
+    box.appendChild(el);
+    const t = setTimeout(() => {
+      el.style.opacity = '1';
+      if (i === ANALYSIS_SIGNALS.length - 1) {
+        const adv = document.getElementById('advance-2');
+        adv.style.opacity = '1';
+        adv.style.pointerEvents = 'auto';
+      }
+    }, 600 + i * 900);
+    demo.timeouts.push(t);
+  });
+}
+
+function showInsights() {
+  const box = document.getElementById('insights-box');
+  box.innerHTML = '';
+  INSIGHTS.forEach(ins => {
+    const card = document.createElement('div');
+    card.className = 'insight-card';
+    card.innerHTML = '<div class="insight-label">' + ins.label + '</div><div class="insight-text">' + ins.text + '</div>';
+    box.appendChild(card);
+  });
 }
 
 function playSession() {
@@ -1864,15 +1956,13 @@ function playSession() {
   btn.disabled = true;
   btn.textContent = '▶ Playing...';
 
-  const d1 = runColumn(SESSION_WITHOUT, 'col-without', 'outcome-without');
-  const d2 = runColumn(SESSION_WITH,    'col-with',    'outcome-with');
-
-  // re-label button when done
-  const finishAt = Math.max(d1, d2) + 1400;
-  const ft = setTimeout(() => {
-    btn.textContent = '✓ Complete — click Reset to replay';
-  }, finishAt);
-  demo.timeouts.push(ft);
+  showStep(1);
+  runColumn(SESSION_ACTOR, 'col-session', () => {
+    const adv = document.getElementById('advance-1');
+    adv.style.opacity = '1';
+    adv.style.pointerEvents = 'auto';
+    btn.textContent = '✓ Session complete — follow the steps above';
+  });
 }
 
 function resetSession() {
@@ -1882,10 +1972,16 @@ function resetSession() {
   demo.intervals.length = 0;
   demo.active = false;
 
-  document.getElementById('col-without').innerHTML = '';
-  document.getElementById('col-with').innerHTML = '';
-  document.getElementById('outcome-without').style.opacity = '0';
-  document.getElementById('outcome-with').style.opacity = '0';
+  document.getElementById('col-session').innerHTML = '';
+  document.getElementById('analysis-box').innerHTML = '';
+  document.getElementById('insights-box').innerHTML = '';
+
+  ['advance-1', 'advance-2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.style.opacity = '0'; el.style.pointerEvents = 'none'; }
+  });
+
+  showStep(1);
 
   const btn = document.getElementById('play-btn');
   btn.disabled = false;
@@ -1934,7 +2030,7 @@ function initPilotForm() {
     if (!name || !email || !company || !role) return;
 
     // Fallback: open mailto with pre-filled subject/body
-    const subject = encodeURIComponent('Candor Pilot — ' + company);
+    const subject = encodeURIComponent('Rehearse Pilot — ' + company);
     const body = encodeURIComponent(
       'Name: ' + name + '\nCompany: ' + company + '\nRole: ' + role + '\nEmail: ' + email
     );
@@ -1959,7 +2055,7 @@ function initCvForm() {
     const role = data.get('role');
     if (!name || !email || !role) return;
 
-    const subject = encodeURIComponent('Candor — Engineering Intro: ' + name);
+    const subject = encodeURIComponent('Rehearse — Engineering Intro: ' + name);
     const body = encodeURIComponent(
       'Name: ' + name +
       '\nBuilds: ' + role +
