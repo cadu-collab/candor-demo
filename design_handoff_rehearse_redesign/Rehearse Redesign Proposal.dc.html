@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#E7E5DE;font-family:'Hanken Grotesk',sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#E5471A;text-decoration:none}
+  a:hover{color:#c23c14}
+  ::selection{background:#F6D6C6;color:#181613}
+</style>
+</helmet>
+<div style="background:#E7E5DE;padding:56px 40px 80px;min-height:100vh">
+
+  <!-- ===== PROPOSAL HEADER ===== -->
+  <sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1280px;margin:0 auto 40px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;border-bottom:1px solid #C9C6BD;padding-bottom:28px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#E5471A;margin-bottom:14px">Landing Page Redesign · Proposal</div>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:44px;line-height:1.02;color:#181613;letter-spacing:-0.02em;max-width:640px">Rehearse, reskinned for warmth and confidence</h1>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#63625C;line-height:1.7;text-align:right">
+        rehearseapps.com<br>New palette · New type system<br>Desktop + Mobile
+      </div>
+    </div>
+    <!-- brand reference strip -->
+    <div style="display:flex;gap:36px;flex-wrap:wrap;margin-top:26px;align-items:flex-start">
+      <div style="display:flex;gap:10px">
+        <div style="text-align:center"><div style="width:44px;height:44px;border-radius:8px;background:#E5471A"></div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#63625C;margin-top:6px">Ember</div></div>
+        <div style="text-align:center"><div style="width:44px;height:44px;border-radius:8px;background:#181613"></div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#63625C;margin-top:6px">Ink</div></div>
+        <div style="text-align:center"><div style="width:44px;height:44px;border-radius:8px;background:#F6D6C6"></div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#63625C;margin-top:6px">Blush</div></div>
+        <div style="text-align:center"><div style="width:44px;height:44px;border-radius:8px;background:#FAF9F5;border:1px solid #C9C6BD"></div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#63625C;margin-top:6px">Paper</div></div>
+        <div style="text-align:center"><div style="width:44px;height:44px;border-radius:8px;background:#63625C"></div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#63625C;margin-top:6px">Stone</div></div>
+      </div>
+      <div style="border-left:1px solid #C9C6BD;padding-left:36px;display:flex;gap:32px;flex-wrap:wrap">
+        <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;color:#181613">Bricolage Grotesque</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#63625C;margin-top:2px">Display / headlines</div></div>
+        <div><div style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:18px;color:#181613">Hanken Grotesk</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#63625C;margin-top:2px">Body / UI</div></div>
+        <div><div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:16px;color:#181613">JetBrains Mono</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#63625C;margin-top:2px">Labels / meta</div></div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===== DESKTOP MOCKUP ===== -->
+  <div style="max-width:1280px;margin:0 auto">
+    <sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#63625C;margin-bottom:14px">Desktop</div>
+    </sc-if>
+    <!-- browser chrome -->
+    <div style="border-radius:16px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(24,22,19,0.4);border:1px solid #C9C6BD">
+      <div style="background:#181613;height:40px;display:flex;align-items:center;padding:0 16px;gap:8px">
+        <div style="width:11px;height:11px;border-radius:50%;background:#E5471A"></div>
+        <div style="width:11px;height:11px;border-radius:50%;background:#63625C"></div>
+        <div style="width:11px;height:11px;border-radius:50%;background:#63625C"></div>
+        <div style="margin:0 auto;background:#26231f;border-radius:6px;padding:4px 60px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a8880">rehearseapps.com</div>
+      </div>
+      <div style="background:#FAF9F5">
+
+        <!-- NAV -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:1px solid #EDEBE4">
+          <img src="uploads/rehearse-lockup.png" alt="Rehearse" style="height:28px;display:block">
+          <div style="display:flex;gap:34px;align-items:center;font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:500;color:#181613">
+            <span>Platform</span><span>Why Rehearse</span><span>Early Access</span>
+            <span style="background:#E5471A;color:#FAF9F5;padding:11px 20px;border-radius:8px;font-weight:600;font-size:14px">Join the waitlist</span>
+          </div>
+        </div>
+
+        <!-- HERO -->
+        <div data-screen-label="Hero" style="position:relative;padding:72px 48px 80px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center">
+          <sc-if value="{{ showAnnotations }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;top:24px;right:24px;width:30px;height:30px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:5">1</div></sc-if>
+          <div>
+            <div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#63625C;background:#F6D6C6;padding:7px 12px;border-radius:6px;margin-bottom:26px">Leadership Development Platform</div>
+            <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:56px;line-height:1.0;letter-spacing:-0.025em;color:#181613;margin-bottom:26px">Rehearse the conversations that drive results before they impact your team</h2>
+            <p style="font-family:'Hanken Grotesk',sans-serif;font-size:17px;line-height:1.6;color:#63625C;max-width:520px;margin-bottom:32px;text-wrap:pretty">Most managers step into leadership with little formal training. Practice realistic scenarios live with a trained actor, then get clear behavioral feedback you can use right away.</p>
+            <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+              <span style="background:#E5471A;color:#FAF9F5;padding:15px 26px;border-radius:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:16px">Join the waitlist</span>
+              <span style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;color:#181613;font-weight:600;border-bottom:2px solid #181613;padding-bottom:2px">See how it works</span>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#63625C;margin-top:20px">30 min · trained actor · AI-personalized feedback</div>
+          </div>
+          <!-- live session card (Ink surface) -->
+          <div style="background:#12100e;border-radius:18px;padding:16px;box-shadow:0 24px 50px -24px rgba(24,22,19,0.6)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding:0 2px">
+              <div style="display:flex;align-items:center;gap:9px"><div style="width:9px;height:9px;border-radius:50%;background:#E5471A"></div><span style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;color:#FAF9F5">Live session · Underperformance</span></div>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8a8880">12:34</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:14px;align-items:stretch">
+              <!-- actor video + PiP -->
+              <div style="position:relative;border-radius:12px;overflow:hidden;background:#26231f;min-height:220px">
+                <img src="uploads/pasted-1784813592894-0.png" alt="Actor" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+                <span style="position:absolute;left:10px;bottom:10px;background:rgba(18,16,14,0.72);backdrop-filter:blur(4px);font-family:'JetBrains Mono',monospace;font-size:11px;color:#FAF9F5;padding:4px 10px;border-radius:6px">Actor</span>
+                <!-- control bar -->
+                <div style="position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:8px;background:rgba(18,16,14,0.6);backdrop-filter:blur(4px);padding:6px 10px;border-radius:20px">
+                  <div style="width:8px;height:8px;border-radius:50%;background:#c9c6bd"></div>
+                  <div style="width:8px;height:8px;border-radius:50%;background:#c9c6bd"></div>
+                  <div style="width:8px;height:8px;border-radius:50%;background:#c9c6bd"></div>
+                  <div style="width:8px;height:8px;border-radius:50%;background:#E5471A"></div>
+                </div>
+                <!-- PiP: manager (you) -->
+                <div style="position:absolute;right:10px;bottom:10px;width:38%;aspect-ratio:4/3;border-radius:9px;overflow:hidden;border:2px solid #12100e;box-shadow:0 6px 16px -6px rgba(0,0,0,0.6)">
+                  <img src="uploads/pasted-1784813564654-0.png" alt="You" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+                  <span style="position:absolute;left:6px;bottom:6px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;color:#FAF9F5;text-shadow:0 1px 3px rgba(0,0,0,0.7)">YOU</span>
+                </div>
+              </div>
+              <!-- sidebar -->
+              <div style="display:flex;flex-direction:column;gap:20px;padding:4px 2px">
+                <div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#7f8ba0;letter-spacing:1.5px;margin-bottom:8px">SCENARIO</div>
+                  <div style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#e7e5df;line-height:1.45">Underperformance: Jordan has missed two deadlines this sprint.</div>
+                </div>
+                <div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#7f8ba0;letter-spacing:1.5px;margin-bottom:12px">LIVE FEEDBACK</div>
+                  <div style="display:flex;flex-direction:column;gap:13px">
+                    <div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:none;width:18px;height:18px;border-radius:50%;background:#E5471A;display:flex;align-items:center;justify-content:center;margin-top:1px"><svg viewBox="0 0 24 24" style="width:11px;height:11px" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></div><span style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;color:#FAF9F5;line-height:1.35">Named the issue directly</span></div>
+                    <div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:none;width:18px;height:18px;border-radius:50%;border:2px solid #4a453e;margin-top:1px"></div><span style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;color:#b8b6ae;line-height:1.35">Held the silence</span></div>
+                    <div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:none;width:18px;height:18px;border-radius:50%;border:2px solid #4a453e;margin-top:1px"></div><span style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;color:#b8b6ae;line-height:1.35">Avoided softening the message</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div data-screen-label="Stats" style="position:relative;background:#F6D6C6;padding:46px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
+          <sc-if value="{{ showAnnotations }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;top:16px;right:24px;width:30px;height:30px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:5">2</div></sc-if>
+          <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:52px;color:#E5471A;line-height:1;letter-spacing:-0.02em">82%</div><div style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;color:#181613;margin-top:10px;max-width:220px">of managers are promoted with zero leadership training</div></div>
+          <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:52px;color:#E5471A;line-height:1;letter-spacing:-0.02em">4.34 hrs</div><div style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;color:#181613;margin-top:10px;max-width:220px">lost per week to unresolved conflict</div></div>
+          <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:52px;color:#E5471A;line-height:1;letter-spacing:-0.02em">42%</div><div style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;color:#181613;margin-top:10px;max-width:220px">of team exits are preventable</div></div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div data-screen-label="How It Works" style="position:relative;padding:76px 48px">
+          <sc-if value="{{ showAnnotations }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;top:24px;right:24px;width:30px;height:30px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:5">3</div></sc-if>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#E5471A;margin-bottom:12px">How It Works</div>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:40px;letter-spacing:-0.02em;color:#181613;margin-bottom:48px">Practice before it's real</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+            <div style="background:#FAF9F5;border:1px solid #EDEBE4;border-radius:14px;padding:28px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#E5471A;font-weight:700;margin-bottom:18px">01</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;color:#181613;margin-bottom:12px">Define the scenario</div>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.55;color:#63625C">Select a leadership situation — performance, negotiation, restructuring. AI customizes it to your role, team, and real context.</p>
+            </div>
+            <div style="background:#FAF9F5;border:1px solid #EDEBE4;border-radius:14px;padding:28px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#E5471A;font-weight:700;margin-bottom:18px">02</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;color:#181613;margin-bottom:12px">Practice with a trained actor</div>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.55;color:#63625C">Step into an unscripted simulation where a professional actor responds in real time — the genuine push and pull of a real conversation.</p>
+            </div>
+            <div style="background:#FAF9F5;border:1px solid #EDEBE4;border-radius:14px;padding:28px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#E5471A;font-weight:700;margin-bottom:18px">03</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;color:#181613;margin-bottom:12px">Receive behavioral feedback</div>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.55;color:#63625C">A clear, evidence-based review: what landed, the critical moments, and specific ways to improve your impact.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WHY REHEARSE -->
+        <div data-screen-label="Why Rehearse" style="position:relative;background:#181613;padding:76px 48px">
+          <sc-if value="{{ showAnnotations }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;top:24px;right:24px;width:30px;height:30px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:5">4</div></sc-if>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#F6D6C6;margin-bottom:12px">Why Rehearse</div>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:40px;letter-spacing:-0.02em;color:#FAF9F5;margin-bottom:48px">Be more human</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px">
+            <div style="border-top:2px solid #E5471A;padding-top:22px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a8880;margin-bottom:16px">01</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:30px;color:#FAF9F5;line-height:1.05">Practice</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:22px;color:#63625C;margin-bottom:16px">not theory</div>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.55;color:#b8b6ae">Gain real capability by rehearsing the moments that matter — not by learning another framework.</p>
+            </div>
+            <div style="border-top:2px solid #E5471A;padding-top:22px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a8880;margin-bottom:16px">02</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:30px;color:#FAF9F5;line-height:1.05">Presence</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:22px;color:#63625C;margin-bottom:16px">not performance</div>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.55;color:#b8b6ae">Real friction from a trained actor means you can't script your way through — so what you practice actually carries over.</p>
+            </div>
+            <div style="border-top:2px solid #E5471A;padding-top:22px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a8880;margin-bottom:16px">03</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:30px;color:#FAF9F5;line-height:1.05">Personalized</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:22px;color:#63625C;margin-bottom:16px">not generic</div>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.55;color:#b8b6ae">Every session is built around your specific challenges and organizational context — for relevant, lasting results.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WAITLIST -->
+        <div data-screen-label="Waitlist" style="position:relative;padding:76px 48px">
+          <sc-if value="{{ showAnnotations }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;top:24px;right:24px;width:30px;height:30px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:5">5</div></sc-if>
+          <div style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center;background:#F6D6C6;border-radius:18px;padding:44px">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#E5471A;margin-bottom:12px">Early Access</div>
+              <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:36px;letter-spacing:-0.02em;color:#181613;margin-bottom:16px">Pilot programs</h3>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:16px;line-height:1.55;color:#63625C">Success metrics co-designed and agreed before day one.</p>
+            </div>
+            <div style="background:#FAF9F5;border-radius:14px;padding:28px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+                <div style="border:1px solid #D9D6CD;border-radius:8px;padding:12px 14px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#8a8880">Full name</div>
+                <div style="border:1px solid #D9D6CD;border-radius:8px;padding:12px 14px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#8a8880">Work email</div>
+                <div style="border:1px solid #D9D6CD;border-radius:8px;padding:12px 14px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#8a8880">Company</div>
+                <div style="border:1px solid #D9D6CD;border-radius:8px;padding:12px 14px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#8a8880">Company size</div>
+              </div>
+              <div style="border:1px solid #D9D6CD;border-radius:8px;padding:12px 14px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#8a8880;margin-bottom:12px">Topics you want to work on — optional</div>
+              <div style="background:#E5471A;color:#FAF9F5;text-align:center;padding:14px;border-radius:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:16px">Join the waitlist →</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div style="background:#181613;padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="uploads/rehearse-icon-64.png" alt="Rehearse" style="width:34px;height:34px;display:block;border-radius:8px">
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;color:#FAF9F5">Rehearse</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a8880;margin-top:4px">Be more human</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:28px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:#b8b6ae"><span>Platform</span><span>Early Access</span></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#63625C">© 2026 Rehearse</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MOBILE ===== -->
+  <div style="max-width:1280px;margin:64px auto 0">
+    <sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#63625C;margin-bottom:22px">Mobile</div>
+    </sc-if>
+    <div style="display:flex;gap:44px;flex-wrap:wrap;justify-content:center">
+
+      <!-- phone 1: hero -->
+      <div style="width:330px;background:#181613;border-radius:44px;padding:11px;box-shadow:0 30px 60px -30px rgba(24,22,19,0.5)">
+        <div style="background:#FAF9F5;border-radius:34px;overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #EDEBE4">
+            <img src="uploads/rehearse-lockup.png" alt="Rehearse" style="height:22px;display:block">
+            <div style="display:flex;flex-direction:column;gap:3px"><div style="width:18px;height:2px;background:#181613"></div><div style="width:18px;height:2px;background:#181613"></div></div>
+          </div>
+          <div style="padding:26px 20px 28px">
+            <div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#63625C;background:#F6D6C6;padding:5px 9px;border-radius:5px;margin-bottom:18px">Leadership Platform</div>
+            <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:29px;line-height:1.02;letter-spacing:-0.02em;color:#181613;margin-bottom:16px">Rehearse the conversations that drive results</h2>
+            <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.55;color:#63625C;margin-bottom:22px">Practice live with a trained actor. Get behavioral feedback you can use right away.</p>
+            <div style="background:#E5471A;color:#FAF9F5;text-align:center;padding:14px;border-radius:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;margin-bottom:12px">Join the waitlist</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#63625C;text-align:center">30 min · trained actor · AI feedback</div>
+          </div>
+          <div style="background:#181613;margin:0 14px 20px;border-radius:16px;padding:16px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="display:flex;gap:6px;align-items:center"><div style="width:7px;height:7px;border-radius:50%;background:#E5471A"></div><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#F6D6C6;letter-spacing:1px">LIVE</span></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8a8880">12:34</span></div>
+            <div style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:16/10;margin-bottom:10px;background:#26231f">
+              <img src="uploads/pasted-1784813592894-0.png" alt="Actor" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+              <span style="position:absolute;left:8px;bottom:7px;background:rgba(18,16,14,0.72);font-family:'JetBrains Mono',monospace;font-size:9px;color:#FAF9F5;padding:3px 7px;border-radius:5px">Actor</span>
+              <div style="position:absolute;right:8px;bottom:8px;width:36%;aspect-ratio:4/3;border-radius:7px;overflow:hidden;border:2px solid #12100e"><img src="uploads/pasted-1784813564654-0.png" alt="You" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:5px;bottom:4px;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;color:#FAF9F5;text-shadow:0 1px 2px rgba(0,0,0,0.7)">YOU</span></div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center"><div style="flex:none;width:16px;height:16px;border-radius:50%;background:#E5471A;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:10px;height:10px" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></div><span style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#FAF9F5">Named the issue directly</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- phone 2: how it works / why -->
+      <div style="width:330px;background:#181613;border-radius:44px;padding:11px;box-shadow:0 30px 60px -30px rgba(24,22,19,0.5)">
+        <div style="background:#FAF9F5;border-radius:34px;overflow:hidden">
+          <div style="background:#F6D6C6;padding:22px 20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+            <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;color:#E5471A;line-height:1">82%</div><div style="font-family:'Hanken Grotesk',sans-serif;font-size:10px;color:#181613;margin-top:4px">no training</div></div>
+            <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;color:#E5471A;line-height:1">4.3h</div><div style="font-family:'Hanken Grotesk',sans-serif;font-size:10px;color:#181613;margin-top:4px">lost weekly</div></div>
+            <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;color:#E5471A;line-height:1">42%</div><div style="font-family:'Hanken Grotesk',sans-serif;font-size:10px;color:#181613;margin-top:4px">preventable</div></div>
+          </div>
+          <div style="padding:24px 20px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#E5471A;margin-bottom:8px">How It Works</div>
+            <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.02em;color:#181613;margin-bottom:20px">Practice before it's real</h3>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="border:1px solid #EDEBE4;border-radius:11px;padding:16px"><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#E5471A;font-weight:700;margin-bottom:8px">01</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;color:#181613;margin-bottom:5px">Define the scenario</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;line-height:1.5;color:#63625C">AI customizes it to your role, team, and real context.</p></div>
+              <div style="border:1px solid #EDEBE4;border-radius:11px;padding:16px"><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#E5471A;font-weight:700;margin-bottom:8px">02</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;color:#181613;margin-bottom:5px">Practice with an actor</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;line-height:1.5;color:#63625C">Unscripted, real-time — genuine push and pull.</p></div>
+              <div style="border:1px solid #EDEBE4;border-radius:11px;padding:16px"><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#E5471A;font-weight:700;margin-bottom:8px">03</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;color:#181613;margin-bottom:5px">Get feedback</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;line-height:1.5;color:#63625C">Evidence-based review of what landed and what to improve.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== RATIONALE ===== -->
+  <sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1280px;margin:72px auto 0;border-top:1px solid #C9C6BD;padding-top:40px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#63625C;margin-bottom:28px">Key decisions</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px">
+      <div style="display:flex;gap:14px"><div style="flex:none;width:28px;height:28px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">1</div><div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;color:#181613;margin-bottom:6px">Editorial hero</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.5;color:#63625C">Mono eyebrow on Blush + a large Bricolage display headline set a confident, human tone. Ember is reserved for a single primary CTA so the action always reads first.</p></div></div>
+      <div style="display:flex;gap:14px"><div style="flex:none;width:28px;height:28px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">2</div><div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;color:#181613;margin-bottom:6px">Warm stat pause</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.5;color:#63625C">The stats sit on a full-bleed Blush band with oversized Ember figures — a warm, human beat between sections rather than a cold data strip.</p></div></div>
+      <div style="display:flex;gap:14px"><div style="flex:none;width:28px;height:28px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">3</div><div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;color:#181613;margin-bottom:6px">Mono step numbers</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.5;color:#63625C">JetBrains Mono numerals label the process steps, echoing the craft of rehearsal. Cards float on Paper with airy whitespace for calm scanning.</p></div></div>
+      <div style="display:flex;gap:14px"><div style="flex:none;width:28px;height:28px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">4</div><div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;color:#181613;margin-bottom:6px">Ink pillar section</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.5;color:#63625C">"Be more human" inverts to an Ink surface for gravity. The Practice/not-theory contrast uses Bricolage bold vs. Stone regular to hold hierarchy in two words.</p></div></div>
+      <div style="display:flex;gap:14px"><div style="flex:none;width:28px;height:28px;border-radius:50%;background:#E5471A;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">5</div><div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;color:#181613;margin-bottom:6px">Inviting waitlist</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.5;color:#63625C">The form sits on a Blush panel with a Paper card — inviting rather than corporate. The Ember submit anchors conversion at the bottom of the flow.</p></div></div>
+      <div style="display:flex;gap:14px"><div style="flex:none;width:28px;height:28px;border-radius:50%;background:#181613;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">T</div><div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;color:#181613;margin-bottom:6px">Type system</div><p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.5;color:#63625C">Bricolage Grotesque for display, Hanken Grotesk for body/UI, JetBrains Mono for eyebrows and meta — a clear three-role hierarchy applied consistently.</p></div></div>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:900},&quot;showAnnotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Proposal&quot;},&quot;showChrome&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Proposal&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showAnnotations: this.props.showAnnotations ?? true,
+      showChrome: this.props.showChrome ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>
